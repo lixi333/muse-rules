@@ -1,0 +1,41 @@
+# NAME: MuseAI
+# GENERATED-FOR: Anywhere Routing Rule Set
+# DESCRIPTION: Meta Muse AI 分流规则（Anywhere 专用，自动生成，每日更新）
+# RULES: 26
+# SKIPPED: 0
+# SOURCES:
+# - https://raw.githubusercontent.com/juner922/muse-loon-rules/main/MuseAI.list
+# - https://cdn.jsdelivr.net/gh/VPSDance/ai-proxy-rules@main/rules/loon/meta-ai.list
+#
+# 重要: Muse 有地区限制。域名全走代理仍可能提示"尚未在你的国家或地区开放"，
+# 此时是出口 IP 问题 —— 需要美区原生/家宽 IP（机房 IP、广播 IP 会被排队）。
+# 导入后请手动把该规则集指向你的美国节点策略组。
+# 生成日期: 2026-10-19
+
+name = MuseAI
+2, atmeta.com
+2, cdninstagram.com
+2, ecto1usercontent.com
+2, facebook.com
+2, facebook.net
+2, fb.com
+2, fbcdn.net
+2, fbpigeon.com
+2, fbsbx.com
+2, instagram.com
+2, llama.com
+2, llamameta.net
+2, meta.ai
+2, meta.com
+2, metaaiusercontent.com
+2, metaaivm.com
+2, muse.ai
+2, museai.com
+2, whatsapp.com
+2, whatsapp.net
+2, hatch.ecto1.ai
+2, meta-ohttp-config-prod.fastly-edge.com
+2, meta-ohttp-relay-prod.fastly-edge.com
+2, meta.hpke-keys.privacy-gateway.cloudflare.com
+2, meta.privacy-gateway.cloudflare.com
+2, node.hatch.one
