@@ -1,0 +1,39 @@
+# Muse AI (Meta) - 合并分流规则集 (自动生成, 每日更新)
+#
+# 来源:
+# - juner922/muse-loon-rules (MuseAI.list)
+# - VPSDance/ai-proxy-rules (rules/loon/meta-ai.list)
+#
+# 重要: Muse 有地区限制。域名全走代理仍可能提示"尚未在你的国家或地区开放",
+# 此时是出口 IP 问题 —— 需要美区原生/家宽 IP (机房 IP、广播 IP 会被排队)。
+# 生成日期: 2026-10-19
+
+# === DOMAIN-SUFFIX ===
+DOMAIN-SUFFIX,atmeta.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,ecto1usercontent.com
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbpigeon.com
+DOMAIN-SUFFIX,fbsbx.com
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,llama.com
+DOMAIN-SUFFIX,llamameta.net
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaiusercontent.com
+DOMAIN-SUFFIX,metaaivm.com
+DOMAIN-SUFFIX,muse.ai
+DOMAIN-SUFFIX,museai.com
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+
+# === DOMAIN (精确域名, 未被上方后缀覆盖) ===
+DOMAIN,hatch.ecto1.ai
+DOMAIN,meta-ohttp-config-prod.fastly-edge.com
+DOMAIN,meta-ohttp-relay-prod.fastly-edge.com
+DOMAIN,meta.hpke-keys.privacy-gateway.cloudflare.com
+DOMAIN,meta.privacy-gateway.cloudflare.com
+DOMAIN,node.hatch.one
