@@ -19,6 +19,8 @@ SOURCES = [
 ]
 
 OUTPUT = "MuseAI-merged.list"
+OUTPUT_ARRS = "MuseAI.arrs"
+ARRS_NAME = "MuseAI"
 
 
 def fetch(name, url):
@@ -56,7 +58,7 @@ def main():
     for name, url in SOURCES:
         try:
             text = fetch(name, url)
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - one bad source must not kill the merge
             print(f"WARN: failed to fetch {name}: {e}", file=sys.stderr, flush=True)
             continue
         s, d = parse(text)
@@ -68,12 +70,18 @@ def main():
               file=sys.stderr, flush=True)
         sys.exit(1)
 
+    # Drop suffixes shadowed by a broader suffix.
     suffixes = sorted(s for s in all_suffixes if not any(
         s != o and (s == o or s.endswith("." + o)) for o in all_suffixes))
     suffix_set = set(suffixes)
+    # Drop exact domains already covered by a suffix.
     domains = sorted(d for d in all_domains if not covered_by_suffix(d, suffix_set))
 
     today = datetime.date.today().isoformat()
+    write_list(suffixes, domains, today)
+    write_arrs(suffixes, domains, today)
+
+def write_list(suffixes, domains, today):
     lines = [
         "# Muse AI (Meta) - 合并分流规则集 (自动生成, 每日更新)",
         "#",
@@ -95,6 +103,39 @@ def main():
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print(f"wrote {OUTPUT}: {len(suffixes)} suffixes, {len(domains)} domains", flush=True)
+
+
+def write_arrs(suffixes, domains, today):
+    """Write the Anywhere (.arrs) rule set.
+
+    Anywhere rule types: 0=IPv4 CIDR, 1=IPv6 CIDR, 2=domain suffix, 3=keyword.
+    It has no exact-domain match, so DOMAIN entries are emitted as suffix
+    rules too (same as the official anywhere-rules converter does).
+    No `routing` header: the user picks their own proxy policy on import.
+    """
+    rules = [f"2, {s}" for s in suffixes] + [f"2, {d}" for d in domains]
+    source_urls = [url for _, url in SOURCES]
+    lines = [
+        f"# NAME: {ARRS_NAME}",
+        "# GENERATED-FOR: Anywhere Routing Rule Set",
+        "# DESCRIPTION: Meta Muse AI 分流规则（Anywhere 专用，自动生成，每日更新）",
+        f"# RULES: {len(rules)}",
+        "# SKIPPED: 0",
+        "# SOURCES:",
+        *[f"# - {u}" for u in source_urls],
+        "#",
+        "# 重要: Muse 有地区限制。域名全走代理仍可能提示\"尚未在你的国家或地区开放\"，",
+        "# 此时是出口 IP 问题 —— 需要美区原生/家宽 IP（机房 IP、广播 IP 会被排队）。",
+        "# 导入后请手动把该规则集指向你的美国节点策略组。",
+        f"# 生成日期: {today}",
+        "",
+        f"name = {ARRS_NAME}",
+        *rules,
+        "",
+    ]
+    with open(OUTPUT_ARRS, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"wrote {OUTPUT_ARRS}: {len(rules)} rules", flush=True)
 
 
 if __name__ == "__main__":
