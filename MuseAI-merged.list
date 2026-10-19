@@ -3,10 +3,11 @@
 # 来源:
 # - juner922/muse-loon-rules (MuseAI.list)
 # - VPSDance/ai-proxy-rules (rules/loon/meta-ai.list)
+# - 手动补充: threads.com, threads.net
 #
 # 重要: Muse 有地区限制。域名全走代理仍可能提示"尚未在你的国家或地区开放",
 # 此时是出口 IP 问题 —— 需要美区原生/家宽 IP (机房 IP、广播 IP 会被排队)。
-# 生成日期: 2026-10-19
+# 生成日期: 2026-10-20
 
 # === DOMAIN-SUFFIX ===
 DOMAIN-SUFFIX,atmeta.com
@@ -27,6 +28,8 @@ DOMAIN-SUFFIX,metaaiusercontent.com
 DOMAIN-SUFFIX,metaaivm.com
 DOMAIN-SUFFIX,muse.ai
 DOMAIN-SUFFIX,museai.com
+DOMAIN-SUFFIX,threads.com
+DOMAIN-SUFFIX,threads.net
 DOMAIN-SUFFIX,whatsapp.com
 DOMAIN-SUFFIX,whatsapp.net
 

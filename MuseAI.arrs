@@ -1,7 +1,7 @@
 # NAME: MuseAI
 # GENERATED-FOR: Anywhere Routing Rule Set
 # DESCRIPTION: Meta Muse AI 分流规则（Anywhere 专用，自动生成，每日更新）
-# RULES: 26
+# RULES: 28
 # SKIPPED: 0
 # SOURCES:
 # - https://raw.githubusercontent.com/juner922/muse-loon-rules/main/MuseAI.list
@@ -10,7 +10,7 @@
 # 重要: Muse 有地区限制。域名全走代理仍可能提示"尚未在你的国家或地区开放"，
 # 此时是出口 IP 问题 —— 需要美区原生/家宽 IP（机房 IP、广播 IP 会被排队）。
 # 导入后请手动把该规则集指向你的美国节点策略组。
-# 生成日期: 2026-10-19
+# 生成日期: 2026-10-20
 
 name = MuseAI
 2, atmeta.com
@@ -31,6 +31,8 @@ name = MuseAI
 2, metaaivm.com
 2, muse.ai
 2, museai.com
+2, threads.com
+2, threads.net
 2, whatsapp.com
 2, whatsapp.net
 2, hatch.ecto1.ai
