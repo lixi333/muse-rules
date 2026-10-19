@@ -22,6 +22,12 @@ OUTPUT = "MuseAI-merged.list"
 OUTPUT_ARRS = "MuseAI.arrs"
 ARRS_NAME = "MuseAI"
 
+# 手动补充：上游未收录的域名（每日合并不会丢）
+EXTRA_SUFFIXES = {
+    "threads.com",  # Threads 主域名
+    "threads.net",  # Threads 老域名/API（graph.threads.net）
+}
+
 
 def fetch(name, url):
     req = urllib.request.Request(url, headers={"User-Agent": "muse-rules-merge/1.0"})
@@ -65,6 +71,9 @@ def main():
         all_suffixes |= s
         all_domains |= d
 
+    # 手动补充上游未收录的域名
+    all_suffixes |= EXTRA_SUFFIXES
+
     if not all_suffixes and not all_domains:
         print("ERROR: no rules fetched, refusing to write empty output",
               file=sys.stderr, flush=True)
@@ -88,6 +97,7 @@ def write_list(suffixes, domains, today):
         "# 来源:",
         "# - juner922/muse-loon-rules (MuseAI.list)",
         "# - VPSDance/ai-proxy-rules (rules/loon/meta-ai.list)",
+        "# - 手动补充: threads.com, threads.net",
         "#",
         "# 重要: Muse 有地区限制。域名全走代理仍可能提示\"尚未在你的国家或地区开放\",",
         "# 此时是出口 IP 问题 —— 需要美区原生/家宽 IP (机房 IP、广播 IP 会被排队)。",
